@@ -1,0 +1,79 @@
+
+
+{% if user.is_authenticated %}
+
+    {% if group_name == 'estudiante' %}
+
+    <header class="p-3 text-bg-dark bg-primary">
+
+
+    {% elif group_name == 'profesor' %}
+    <header class="p-3 text-bg-dark bg-success">
+    {% elif group_name == 'administrativo' %}
+    <header class="p-3 text-bg-dark bg-danger">
+    {% endif %}
+{% else %}
+<header class="p-3 text-bg-dark bg-info">
+
+{% endif %}
+<div class="container">
+
+    <div  class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+    <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      Academia USAC
+    </a>
+    
+
+    {% if user.is_authenticated %}
+
+    {% if group_name == 'estudiante' %}
+
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-primary">
+
+
+    {% elif group_name == 'profesor' %}
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-success">
+    {% elif group_name == 'administrativo' %}
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-danger">
+    {% endif %}
+{% else %}
+
+<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-info">
+{% endif %}
+
+
+ 
+
+       <li style="list-style-type: none;" ><a href="{% url 'precing' %}" class="nav-link px-2 text-white">Precios</a></li>
+
+   
+
+      <li style="list-style-type: none;" ><a href="{% url 'home' %}" class="nav-link px-2 text-white" >Home</a></li>
+      <li style="list-style-type: none;" ><a href="{% url 'courses' %}"class="nav-link px-2 text-white">Cursos</a></li>
+      
+      
+      </ul>
+
+
+      
+
+    <div class="text-end">
+
+        {% if user.is_authenticated %}
+            <li style="list-style-type: none;">
+                <a class="nav-link px-2 text-white" href="{% url 'profile' %}">{{group_name}}|{{user.username}} </a>
+                <a class="nav-link px-2 text-white" href="{% url 'profile_password_change' %}">Cambiar Contraseña</a>
+                <img width="48" height="48" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+            </li>
+        {% else %}
+        <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Ingresar</a>
+        <a class="btn btn-danger" href="{% url 'register' %}">Registrase</a>
+        <img width="48" height="48" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+          
+          {% endif %}
+    </div>
+</div>
+</div>
+  </header>
